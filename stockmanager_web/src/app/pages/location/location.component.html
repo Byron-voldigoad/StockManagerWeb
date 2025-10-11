@@ -1,0 +1,87 @@
+<div class="min-h-screen bg-amber-50">
+  <main class="container mx-auto px-4 py-8">
+    <!-- En-tête -->
+    <div class="mb-8">
+      <h1 class="text-4xl font-bold mb-2 text-amber-800">Notre Localisation</h1>
+      <p class="text-amber-600">Venez nous rendre visite</p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-8">
+      <!-- Carte -->
+      <div class="rounded-lg overflow-hidden shadow-xl border border-amber-200 bg-white">
+        <!-- Placeholder pour Google Maps -->
+        <div class="w-full aspect-video bg-amber-100 flex items-center justify-center">
+          <div class="text-center text-amber-600">
+            <span class="text-4xl mb-2 block">🗺️</span>
+            <p class="font-medium">Carte interactive</p>
+            <p class="text-sm">(Google Maps à intégrer)</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Informations -->
+      <div class="space-y-6">
+        <!-- Adresse -->
+        <div class="bg-white rounded-lg p-6 border border-amber-200 shadow-lg">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="text-2xl">📍</span>
+            <h3 class="text-xl font-bold text-amber-900">Adresse</h3>
+          </div>
+          <div class="space-y-1 text-amber-600">
+            <p class="font-medium text-amber-800">La Brocante</p>
+            <p>123 Rue des Antiquités</p>
+            <p>75001 Paris</p>
+            <p>France</p>
+          </div>
+        </div>
+
+        <!-- Accès -->
+        <div class="bg-white rounded-lg p-6 border border-amber-200 shadow-lg">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="text-2xl">🚇</span>
+            <h3 class="text-xl font-bold text-amber-900">Accès</h3>
+          </div>
+          <div class="space-y-3">
+            <div>
+              <p class="font-medium mb-1 text-amber-800">En métro</p>
+              <p class="text-sm text-amber-600">
+                Ligne 6 - Station Bir-Hakeim (5 min à pied)
+              </p>
+            </div>
+            <div>
+              <p class="font-medium mb-1 text-amber-800">En bus</p>
+              <p class="text-sm text-amber-600">
+                Lignes 42, 69, 82 - Arrêt Champ de Mars
+              </p>
+            </div>
+            <div>
+              <p class="font-medium mb-1 text-amber-800">En voiture</p>
+              <p class="text-sm text-amber-600">
+                Parking public à 100m - Parking du Champ de Mars
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Info bonus -->
+        <div class="bg-amber-100/50 border border-amber-200 rounded-lg p-6">
+          <p class="text-sm text-amber-700">
+            💡 <span class="font-medium">Bon à savoir :</span> 
+            Notre brocante est située au cœur de Paris, à quelques pas de la Tour Eiffel.
+            Parfait pour une visite culturelle complète !
+          </p>
+        </div>
+
+        <!-- Bouton Google Maps -->
+        <a 
+          href="https://goo.gl/maps/example" 
+          target="_blank"
+          class="block w-full bg-amber-500 hover:bg-amber-600 text-white 
+                 text-center py-3 rounded-lg font-semibold transition-all duration-300"
+        >
+          📍 Voir sur Google Maps
+        </a>
+      </div>
+    </div>
+  </main>
+</div>

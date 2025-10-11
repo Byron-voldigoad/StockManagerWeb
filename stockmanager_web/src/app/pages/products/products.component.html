@@ -1,0 +1,25 @@
+<div class="min-h-screen bg-amber-50">
+  
+  <main class="container mx-auto px-4 py-8">
+    <!-- En-tête -->
+    <div class="mb-8">
+      <h1 class="text-4xl font-bold mb-2 text-amber-800">Notre Collection</h1>
+      <p class="text-amber-600">Découvrez nos trésors vintage et antiquités</p>
+    </div>
+
+    <!-- Grille produits -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <app-product-card 
+        *ngFor="let product of products" 
+        [product]="product">
+      </app-product-card>
+    </div>
+
+    <!-- Message si vide -->
+    <div *ngIf="products.length === 0" class="text-center py-12">
+      <p class="text-amber-600 text-lg">
+        Aucun produit disponible pour le moment.
+      </p>
+    </div>
+  </main>
+</div>
