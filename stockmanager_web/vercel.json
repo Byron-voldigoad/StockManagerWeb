@@ -2,8 +2,8 @@
   "version": 2,
   "builds": [
     {
-      "src": "dist/stockmanager_web/**/*",
-      "use": "@vercel/static"
+      "src": "angular.json",
+      "use": "@vercel/angular"
     }
   ],
   "routes": [
