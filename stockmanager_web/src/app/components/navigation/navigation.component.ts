@@ -1,13 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { SiteConfigService } from '../../services/site-config.service'; // ← AJOUT
 
 @Component({
   selector: 'app-navigation',
   standalone: true,
-  imports: [RouterModule], // ← Important pour routerLink
+  imports: [RouterModule, CommonModule], // ← AJOUT CommonModule
   templateUrl: './navigation.component.html',
   styleUrl: './navigation.component.css'
 })
 export class NavigationComponent {
-  // Pour l'instant, pas de logique complexe
+  // AJOUT: Service de configuration
+  configService = inject(SiteConfigService);
 }

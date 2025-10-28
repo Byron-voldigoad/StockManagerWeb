@@ -1,49 +1,70 @@
+<app-public-layout>
 <div class="min-h-screen bg-amber-50">
   <main class="container mx-auto px-4 py-8">
     <!-- En-tête -->
     <div class="mb-8">
-      <h1 class="text-4xl font-bold mb-2 text-amber-800">Contactez-nous</h1>
-      <p class="text-amber-600">Une question ? Écrivez-nous !</p>
+      <!-- MODIFICATION: Titre dynamique -->
+      <h1 class="text-4xl font-bold mb-2 text-amber-800">
+        {{ configService.getSetting('contact_title') || 'Contactez-nous' }}
+      </h1>
+      
+      <!-- MODIFICATION: Sous-titre dynamique -->
+      <p class="text-amber-600">
+        {{ configService.getSetting('contact_subtitle') || 'Une question ? Écrivez-nous !' }}
+      </p>
     </div>
 
     <div class="grid lg:grid-cols-2 gap-8">
       <!-- Formulaire -->
       <div class="bg-white rounded-lg p-6 border border-amber-200 shadow-lg">
-        <h2 class="text-2xl font-bold mb-6 text-amber-900">Envoyez-nous un message</h2>
+        <!-- MODIFICATION: Titre formulaire dynamique -->
+        <h2 class="text-2xl font-bold mb-6 text-amber-900">
+          {{ configService.getSetting('contact_form_title') || 'Envoyez-nous un message' }}
+        </h2>
         
         <form class="space-y-4">
           <!-- Nom -->
           <div>
-            <label class="block text-sm font-medium mb-2 text-amber-700">Nom</label>
+            <!-- MODIFICATION: Label nom dynamique -->
+            <label class="block text-sm font-medium mb-2 text-amber-700">
+              {{ configService.getSetting('name_label') || 'Nom' }}
+            </label>
             <input 
               class="w-full px-4 py-2 rounded-lg border border-amber-300 
                      bg-amber-50 focus:ring-2 focus:ring-amber-500 
                      focus:border-transparent transition-all"
-              placeholder="Votre nom"
+             
+              [placeholder]="configService.getSetting('name_placeholder') || 'Votre nom'"
             >
           </div>
           
           <!-- Email -->
           <div>
-            <label class="block text-sm font-medium mb-2 text-amber-700">Email</label>
+            <!-- MODIFICATION: Label email dynamique -->
+            <label class="block text-sm font-medium mb-2 text-amber-700">
+              {{ configService.getSetting('email_label') || 'Email' }}
+            </label>
             <input 
               type="email"
               class="w-full px-4 py-2 rounded-lg border border-amber-300 
                      bg-amber-50 focus:ring-2 focus:ring-amber-500 
                      focus:border-transparent transition-all"
-              placeholder="votre@email.com"
+              [placeholder]="configService.getSetting('email_placeholder') || 'votre@email.com'"
             >
           </div>
           
           <!-- Message -->
           <div>
-            <label class="block text-sm font-medium mb-2 text-amber-700">Message</label>
+            <!-- MODIFICATION: Label message dynamique -->
+            <label class="block text-sm font-medium mb-2 text-amber-700">
+              {{ configService.getSetting('message_label') || 'Message' }}
+            </label>
             <textarea 
               rows="5"
               class="w-full px-4 py-2 rounded-lg border border-amber-300 
                      bg-amber-50 focus:ring-2 focus:ring-amber-500 
                      focus:border-transparent transition-all resize-none"
-              placeholder="Votre message..."
+              [placeholder]="configService.getSetting('message_placeholder') || 'Votre message...'"
             ></textarea>
           </div>
           
@@ -53,7 +74,8 @@
             class="w-full bg-amber-500 hover:bg-amber-600 text-white 
                    py-3 rounded-lg font-semibold transition-all duration-300"
           >
-            Envoyer le message
+            <!-- MODIFICATION: Bouton envoyer dynamique -->
+            {{ configService.getSetting('send_message') || 'Envoyer le message' }}
           </button>
         </form>
       </div>
@@ -67,10 +89,11 @@
             <h3 class="text-xl font-bold text-amber-900">Email</h3>
           </div>
           <a 
-            href="mailto:contact@labrocante.fr" 
+            [href]="'mailto:' + (configService.getSetting('contact_email') || 'contact@labrocante.fr')" 
             class="text-amber-600 hover:text-amber-800 hover:underline"
           >
-            contact&#64;labrocante.fr
+            <!-- MODIFICATION: Email dynamique -->
+            {{ configService.getSetting('contact_email') || 'contact@labrocante.fr' }}
           </a>
         </div>
 
@@ -81,43 +104,61 @@
             <h3 class="text-xl font-bold text-amber-900">Téléphone</h3>
           </div>
           <a 
-            href="tel:+33123456789" 
+            [href]="'tel:' + (configService.getSetting('contact_phone') || '+33123456789')" 
             class="text-amber-600 hover:text-amber-800 hover:underline"
           >
-            +33 1 23 45 67 89
+            <!-- MODIFICATION: Téléphone dynamique -->
+            {{ configService.getSetting('contact_phone') || '+33 1 23 45 67 89' }}
           </a>
         </div>
+
+        <!-- Horaires -->
+        <!-- ... reste du code inchangé ... -->
 
         <!-- Horaires -->
         <div class="bg-white rounded-lg p-6 border border-amber-200 shadow-lg">
           <div class="flex items-center gap-2 mb-4">
             <span class="text-2xl">🕒</span>
-            <h3 class="text-xl font-bold text-amber-900">Horaires d'ouverture</h3>
+            <h3 class="text-xl font-bold text-amber-900">
+              {{ configService.getSetting('opening_hours_title') || "Horaires d'ouverture" }}
+            </h3>
           </div>
           <div class="space-y-2">
-            <div class="flex justify-between">
-              <span class="text-amber-600">Lundi - Vendredi</span>
-              <span class="font-medium text-amber-800">10h - 18h</span>
+            <!-- Horaires avec gestion du "Fermé" -->
+            <div *ngFor="let schedule of getFormattedOpeningHours()" class="flex justify-between items-center">
+              <span class="text-amber-600">{{ schedule.day }}</span>
+              <span 
+                [class]="schedule.isClosed ? 
+                  'text-red-600 font-medium' : 
+                  'text-amber-800 font-medium'"
+              >
+                {{ schedule.hours }}
+                <span *ngIf="schedule.isClosed" class="ml-1">🔒</span>
+              </span>
             </div>
-            <div class="flex justify-between">
-              <span class="text-amber-600">Samedi</span>
-              <span class="font-medium text-amber-800">9h - 19h</span>
-            </div>
-            <div class="flex justify-between">
-              <span class="text-amber-600">Dimanche</span>
-              <span class="font-medium text-amber-800">14h - 18h</span>
+            
+            <!-- Fallback si pas d'horaires -->
+            <div *ngIf="getFormattedOpeningHours().length === 0" class="text-amber-500 text-sm">
+              Horaires non définis
             </div>
           </div>
         </div>
 
+<!-- ... reste du code inchangé ... -->
+
         <!-- Adresse rapide -->
         <div class="bg-amber-100/50 border border-amber-200 rounded-lg p-6">
           <p class="text-sm text-amber-700">
-            🏠 <span class="font-medium">Notre adresse :</span><br>
-            123 Rue des Antiquités, 75001 Paris
+            🏠 
+            <!-- MODIFICATION: Adresse dynamique -->
+            <span class="font-medium">
+              {{ configService.getSetting('address_title') || 'Notre adresse' }} :
+            </span><br>
+            {{ configService.getSetting('contact_address') || '123 Rue des Antiquités, 75001 Paris' }}
           </p>
         </div>
       </div>
     </div>
   </main>
 </div>
+</app-public-layout>

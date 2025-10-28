@@ -1,3 +1,6 @@
+<div 
+  class="product-card bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl cursor-pointer border border-amber-200"
+  (click)="navigateToDetail()">
 <div class="bg-white rounded-lg overflow-hidden shadow-lg 
             hover:shadow-xl hover:scale-105 transition-all duration-300 
             cursor-pointer border border-amber-200"
@@ -26,7 +29,7 @@
     
     <!-- Prix -->
     <p class="text-2xl font-bold text-amber-600">
-      {{ product.price }}€
+      {{ product.price }} FCFA
     </p>
     
     <!-- Quantité -->
@@ -41,4 +44,5 @@
       Voir détails
     </button>
   </div>
+</div>
 </div>

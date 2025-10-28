@@ -5,3 +5,10 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+.product-card {
+  transition: all 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+}
