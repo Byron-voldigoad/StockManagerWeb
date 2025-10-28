@@ -14,8 +14,5 @@
       "src": "/(.*)",
       "dest": "/index.html"
     }
-  ],
-  "buildCommand": "ng build --configuration=production",
-  "outputDirectory": "dist/stockmanager_web",
-  "installCommand": "npm install"
+  ]
 }
