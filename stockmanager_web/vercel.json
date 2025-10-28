@@ -2,22 +2,11 @@
   "version": 2,
   "builds": [
     {
-      "src": "dist/**/*",
+      "src": "dist/stockmanager-web/**/*",
       "use": "@vercel/static"
     }
   ],
   "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
-    }
-  ],
-  
-  "env": {
-    "NODE_VERSION": "18"
-  },
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "src": "/(.*)", "dest": "/index.html" }
   ]
-  
 }
