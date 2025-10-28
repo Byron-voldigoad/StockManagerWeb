@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "buildCommand": "npm run build",
-  "outputDirectory": "dist/stockmanager_web",
-  "framework": "angular",
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+  "public": true,
+  "builds": [
+    { "src": "angular.json", "use": "@vercel/static-build", "config": { "distDir": "dist/stockmanager_web" } }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
