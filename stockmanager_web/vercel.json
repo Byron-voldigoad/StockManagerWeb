@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "dist/stockmanager-web/**/*",
+      "src": "dist/stockmanager_web/**/*",
       "use": "@vercel/static"
     }
   ],
